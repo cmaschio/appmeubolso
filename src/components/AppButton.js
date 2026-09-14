@@ -1,15 +1,24 @@
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native"
-import { colors, spacing, radius } from "../constants/theme"
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { colors, radius, spacing } from '../constants/theme';
 
-export default function AppButton(){
-    return(
-        <TouchableOpacity style={[styles.button, (disabled || loading) && styles.disabled]}
-            onPress={onPress} disabled={disabled || loading}>
+export default function AppButton({
+  title,
+  tittle,
+  onPress,
+  disabled = false,
+  loading = false,
+}) {
+  const label = title ?? tittle;
 
-            {loading ? <ActivityIndicator color={#fff}/> :
-            <Text style={styles.tittle}>{tittle}</Text>}
-        </TouchableOpacity>
-    )
+  return (
+    <TouchableOpacity
+      style={[styles.button, (disabled || loading) && styles.disabled]}
+      onPress={onPress}
+      disabled={disabled || loading}
+    >
+      {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.title}>{label}</Text>}
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -22,7 +31,7 @@ const styles = StyleSheet.create({
     disabled: {
         opacity: 0.6
     },
-    tittle: {
+    title: {
         color: '#fff',
         fontSize: 16,
         fontWeight: '700'
